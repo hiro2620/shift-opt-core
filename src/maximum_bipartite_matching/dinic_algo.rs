@@ -4,9 +4,9 @@ const INF:usize = 1<<60;
 #[doc = "Dinicの入出力に用いる辺"]
 #[derive(Debug)]
 pub struct Edge {
-  from: usize,
-  to: usize,
-  cap: usize,
+  pub from: usize,
+  pub to: usize,
+  pub cap: usize,
 }
 
 #[doc = "処理に用いる辺"]
@@ -20,9 +20,9 @@ struct EdgeInner {
 
 #[doc = "max_flowの戻り値"]
 #[derive(Debug)]
-struct DinicMaxFlowResult {
-  flow_total: usize,
-  flows: Vec<Edge>,
+pub struct DinicMaxFlowResult {
+  pub flow_total: usize,
+  pub flows: Vec<Edge>,
 }
 
 // 参考1: https://ikatakos.com/pot/programming_algorithm/graph_theory/maximum_flow#%E5%AE%9F%E8%A3%85
