@@ -66,7 +66,7 @@ use super::assign_tasks;
       vec![Staff(5)],
     ];
 
-    let res = assign_tasks(input, n);
+    let res = assign_tasks(&input, n);
     dbg!(res);
   }
 }

@@ -98,7 +98,7 @@ impl Dinic {
     let mut flow = 0;
     while self.bfs(s, t) {
       self.progress = vec![0; self.n];
-      let mut f = 0;
+      let mut f;
       loop {
         f = self.dfs(s, t, INF);
         if f == 0 {
@@ -123,6 +123,7 @@ impl Dinic {
     DinicMaxFlowResult { flow_total: flow, flows }
   }
 
+  #[allow(unused)]
   pub fn show_flow(&self) {
     for i in 0..self.n {
       for &e in self.g[i].iter() {
