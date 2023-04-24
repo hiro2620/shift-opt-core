@@ -38,6 +38,12 @@ impl AssignableStaffTable {
         }
     }
 
+    pub fn new_from_table(task_cnt:usize, time_cnt:usize, staff_cnt:usize, table:Vec<Vec<Vec<Staff>>>) -> Self {
+        Self {
+            task_cnt, time_cnt, staff_cnt, table,
+        }
+    }
+
     pub fn solve(&self) -> StaffTable {
         let mut res = vec![];
 
