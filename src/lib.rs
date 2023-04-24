@@ -5,13 +5,13 @@ mod maximum_bipartite_matching;
 pub use staff_table::AssignableStaffTable;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-struct Task(usize);
+struct Task(pub usize);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-struct Time(usize);
+struct Time(pub usize);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct Staff(usize);
+pub struct Staff(pub usize);
 
 #[derive(Debug, Clone)]
 pub struct StaffInput {
