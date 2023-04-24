@@ -50,7 +50,7 @@ impl AssignableStaffTable {
         }
     }
 
-    pub fn solve(&self) -> StaffTable {
+    fn solve_inner(&self) -> StaffTable {
         let mut res = vec![];
 
         for ti in 0..self.time_cnt {
@@ -64,6 +64,26 @@ impl AssignableStaffTable {
             staff_cnt: self.staff_cnt,
             table: res,
         }
+    }
+
+    #[doc = "res[i][j]: i番目の仕事,j番目の時間に入る人(入力に対して転置されていることに注意)"]
+    pub fn solve(&self) -> Vec<Vec<Option<usize>>> {
+        let r = self.solve_inner().table;
+
+        let mut result = vec![vec![None;self.time_cnt];self.task_cnt];
+
+        for i in 0..self.task_cnt {
+            for j in 0..self.time_cnt {
+                let v = r[j][i];
+                if v.is_some() {
+                    result[i][j] = Some(v.unwrap().0);
+                } else {
+                    result[i][j] = None;
+                }
+            }
+        };
+
+        result
     }
 
     fn solve_each_time(&self, time: usize) -> Vec<Option<Staff>> {
