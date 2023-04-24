@@ -38,7 +38,7 @@ impl AssignableStaffTable {
         }
     }
 
-    pub fn new_from_table(task_cnt:usize, time_cnt:usize, staff_cnt:usize, table:Vec<Vec<Vec<usize>>>) -> Self {
+    pub fn new_from_table(task_cnt:usize, time_cnt:usize, staff_cnt:usize, table:&Vec<Vec<Vec<usize>>>) -> Self {
         let mut table_staff = vec![vec![vec![];task_cnt];time_cnt];
         for i in 0..time_cnt {
             for j in 0..task_cnt {
