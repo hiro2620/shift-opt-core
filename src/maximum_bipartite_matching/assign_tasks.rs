@@ -12,7 +12,7 @@ pub fn assign_tasks(input: TaskStaffInput, staff_cnt:usize) -> TaskStaffResult {
   // task_cnt+1~task_cnt+staff_cnt: staff
   let mut dinic = Dinic::new(n);
 
-  for i in 1..=staff_cnt {
+  for i in 1..=task_cnt {
     dinic.add_edge(&Edge { from: 0, to: i, cap: 1 });
   }
 
