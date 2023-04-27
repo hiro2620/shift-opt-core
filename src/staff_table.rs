@@ -92,14 +92,16 @@ impl AssignableStaffTable {
         let shift_span = 2; // 添字を何回置きにずらすか
         let m = self.staff_cnt;
 
-        let current_shift_size = (time/shift_span) * shift_size % m;
+        let current_shift_size = (time/shift_span) * shift_size;
 
         let time_record = &self.table[time];
 
         let time_record_shift = time_record.iter().map(|v| {
             let mut vc = v.clone();
-            let l = current_shift_size % vc.len();
-            vc.rotate_left(l);
+            if vc.len() > 0 {
+                let l = current_shift_size % vc.len();
+                vc.rotate_left(l);
+            };
             vc
         }).collect::<Vec<_>>();
 
