@@ -96,13 +96,10 @@ impl AssignableStaffTable {
 
         let time_record = &self.table[time];
 
-
         let time_record_shift = time_record.iter().map(|v| {
-            v.iter().map(|s| {
-                let i = s.0;
-                let ii = (i+m-current_shift_size)%m;
-                Staff(ii)
-            }).collect::<Vec<_>>()
+            let mut vc = v.clone();
+            vc.rotate_left(current_shift_size);
+            vc
         }).collect::<Vec<_>>();
 
         let time_res = assign_tasks(&time_record_shift, self.staff_cnt);
