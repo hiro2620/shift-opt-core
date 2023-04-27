@@ -98,7 +98,8 @@ impl AssignableStaffTable {
 
         let time_record_shift = time_record.iter().map(|v| {
             let mut vc = v.clone();
-            vc.rotate_left(current_shift_size);
+            let l = current_shift_size % vc.len();
+            vc.rotate_left(l);
             vc
         }).collect::<Vec<_>>();
 
