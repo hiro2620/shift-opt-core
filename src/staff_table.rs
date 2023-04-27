@@ -87,9 +87,31 @@ impl AssignableStaffTable {
     }
 
     fn solve_each_time(&self, time: usize) -> Vec<Option<Staff>> {
-        let time_record = &self.table[time];
-        let time_res = assign_tasks(time_record, self.staff_cnt);
 
-        time_res
+        let shift_size = 2; // 添字をいくつずつずらすか
+        let shift_span = 2; // 添字を何回置きにずらすか
+        let m = self.staff_cnt;
+
+        let current_shift_size = (time/shift_span) * shift_size % m;
+
+        let time_record = &self.table[time];
+
+
+        let time_record_shift = time_record.iter().map(|v| {
+            v.iter().map(|s| {
+                let i = s.0;
+                let ii = (i+m-current_shift_size)%m;
+                Staff(ii)
+            }).collect::<Vec<_>>()
+        }).collect::<Vec<_>>();
+
+        let time_res = assign_tasks(&time_record_shift, self.staff_cnt);
+
+        time_res.iter().map(|v| {
+            match v {
+                Some(v) => Some(Staff((v.0+current_shift_size)%m)),
+                None => None
+            }
+        }).collect::<Vec<_>>()
     }
 }
