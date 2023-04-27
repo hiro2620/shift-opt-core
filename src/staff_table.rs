@@ -90,7 +90,6 @@ impl AssignableStaffTable {
 
         let shift_size = 2; // 添字をいくつずつずらすか
         let shift_span = 2; // 添字を何回置きにずらすか
-        let m = self.staff_cnt;
 
         let current_shift_size = (time/shift_span) * shift_size;
 
@@ -107,11 +106,6 @@ impl AssignableStaffTable {
 
         let time_res = assign_tasks(&time_record_shift, self.staff_cnt);
 
-        time_res.iter().map(|v| {
-            match v {
-                Some(v) => Some(Staff((v.0+current_shift_size)%m)),
-                None => None
-            }
-        }).collect::<Vec<_>>()
+        time_res
     }
 }
